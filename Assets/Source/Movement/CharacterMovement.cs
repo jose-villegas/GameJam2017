@@ -4,6 +4,7 @@
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private SidescrollingActor _character;
+    [SerializeField] private GroundCollider _groundCollider;
 
     private CharacterController _controller;
     private Animator _animator;
@@ -26,15 +27,14 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         _axisInput.x = Input.GetAxis("Horizontal");
         // turning
         transform.rotation = _axisInput.x > 0 ? _facingForward :
                              _axisInput.x < 0 ? _facingBackwards : transform.rotation;
 
-        if (_controller.isGrounded)
+        if (_controller.isGrounded || _groundCollider.IsGrounded)
         {
             _axisInput.y = Input.GetAxisRaw("Vertical");
             // movement
