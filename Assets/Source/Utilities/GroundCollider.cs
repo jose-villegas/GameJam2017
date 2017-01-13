@@ -24,3 +24,4 @@ public class GroundCollider : MonoBehaviour
         IsGrounded = false;
     }
 }
+

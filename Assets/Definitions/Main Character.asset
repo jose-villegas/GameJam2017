@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Main Character
   m_EditorClassIdentifier: 
   HorizontalSpeed: 3.5
-  JumpSpeed: 5
+  JumpSpeed: 8
   AirStrafeSpeed: 2

@@ -54,7 +54,8 @@ public class CharacterMovement : MonoBehaviour
                 _movement.y = _character.JumpSpeed * _axisInput.y;
                 _animator.SetTrigger("Jump");
             }
-            
+
+            didDoubleJump = false;
         }
         else
         {
