@@ -5,6 +5,7 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private SidescrollingActor _character;
     [SerializeField] private GroundCollider _groundCollider;
+    [SerializeField] private PlayerMovementInput _movementInput;
 
     private CharacterController _controller;
     private Animator _animator;
@@ -17,22 +18,44 @@ public class CharacterMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _controller = GetComponent<CharacterController>();
-        _animator = GetComponent<Animator>();
-        _facingForward = transform.rotation;
-        _facingBackwards = _facingForward * Quaternion.Euler(0, 180, 0);
+        if (!this.FindComponent(ref _controller))
+        {
+            StandardMessages.MissingComponent<CharacterController>(this);
+            StandardMessages.DisablingBehaviour(this);
+        }
+
+        if (!this.FindComponent(ref _groundCollider, true))
+        {
+            StandardMessages.MissingComponent<GroundCollider>(this);
+            StandardMessages.DisablingBehaviour(this);
+        }
+        
+        if (!this.FindComponent(ref _animator))
+        {
+            StandardMessages.MissingComponent<Animator>(this);
+            StandardMessages.DisablingBehaviour(this);
+        }
+
+        if (!this.FindComponent(ref _movementInput))
+        {
+            StandardMessages.MissingComponent<PlayerMovementInput>(this);
+            StandardMessages.DisablingBehaviour(this);
+        }
 
         if (!_character)
         {
-            Debug.LogError("Missing " + typeof(SidescrollingActor) + "... Disabling " + this);
-            enabled = false;
+            StandardMessages.MissingAsset<SidescrollingActor>(this);
+            StandardMessages.DisablingBehaviour(this);
         }
+
+        _facingForward = transform.rotation;
+        _facingBackwards = _facingForward * Quaternion.Euler(0, 180, 0);
     }
 
     void FixedUpdate()
     {
-        _axisInput.x = Input.GetAxis("Horizontal");
-        _axisInput.y = Input.GetAxisRaw("Vertical");
+        _axisInput.x = _movementInput.Forward;
+        _axisInput.y = _movementInput.Jump ? 1 : 0;
         // turning
         transform.rotation = _axisInput.x > 0 ? _facingForward :
                              _axisInput.x < 0 ? _facingBackwards : transform.rotation;
@@ -62,7 +85,7 @@ public class CharacterMovement : MonoBehaviour
             _animator.SetBool("Falling", true);
 
             // double jump
-            if(_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
+            if (_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
             {
                 _movement.y = _character.JumpSpeed * _axisInput.y;
                 _animator.SetTrigger("Double Jump");

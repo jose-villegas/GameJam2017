@@ -13,10 +13,8 @@ public class InputConfiguration : MonoBehaviour
 
     [Tooltip("Determines which control scheme to use")]
     public ControlType ActiveControlType = ControlType.Gamepad;
-
     [Tooltip("Default Keyboard Configuration")]
     public KeyboardInputConfiguration KeyboardConfiguration;
-
     [Tooltip("Default Gamepad Configuration")]
     public GamepadInputConfiguration GamepadConfiguration;
 

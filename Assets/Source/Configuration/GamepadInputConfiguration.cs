@@ -10,40 +10,18 @@ public class GamepadInputConfiguration : ScriptableObject, IDevice
     [Header("Gamepad")]
     [Tooltip("Joystic id in Project Settings -> Input")]
     public string GamepadGenericId = "joystick";
-
     [Header("Gamepad - Directional Movement")]
-    public string GamepadHorizontalInput = "Axis X";
-    public string GamepadVerticalInput = "Axis Y";
-
+    public string GamepadHorizontalInputAxis = "Axis X";
     [Header("Gamepad - Gameplay Commands")]
-    public string GamepadSprint = "button 0";
-    public string GamepadCrouch = "button 1";
     public string GamepadJump = "button 2";
-
-    private bool crouching;
 
     public float Forward
     {
-        get { return Input.GetAxisRaw(GamepadVerticalInput); }
-    }
-
-    public float Strafe
-    {
-        get { return Input.GetAxisRaw(GamepadHorizontalInput); }
-    }
-
-    public bool Sprint
-    {
-        get { return Input.GetKey(GamepadSprint); }
-    }
-
-    public bool Crouch
-    {
-        get { return crouching ^= Input.GetKeyUp(GamepadCrouch); }
+        get { return Input.GetAxis(GamepadHorizontalInputAxis); }
     }
 
     public bool Jump
     {
-        get { return Input.GetKeyUp(GamepadJump); }
+        get { return Input.GetKeyDown(GamepadGenericId + " " + GamepadJump); }
     }
 }
