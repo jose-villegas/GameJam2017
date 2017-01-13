@@ -825,7 +825,7 @@ GameObject:
   - 136: {fileID: 136000013726955618}
   m_Layer: 9
   m_Name: Y_Bot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,8 +9,10 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController _controller;
     private Animator _animator;
     private Vector3 _axisInput;
+    private Vector3 _movement;
     private Quaternion _facingForward;
     private Quaternion _facingBackwards;
+    private bool didDoubleJump = false;
 
     // Use this for initialization
     void Start()
@@ -20,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
         _facingForward = transform.rotation;
         _facingBackwards = _facingForward * Quaternion.Euler(0, 180, 0);
 
-        if(!_character)
+        if (!_character)
         {
             Debug.LogError("Missing " + typeof(SidescrollingActor) + "... Disabling " + this);
             enabled = false;
@@ -30,33 +32,58 @@ public class CharacterMovement : MonoBehaviour
     void FixedUpdate()
     {
         _axisInput.x = Input.GetAxis("Horizontal");
+        _axisInput.y = Input.GetAxisRaw("Vertical");
         // turning
         transform.rotation = _axisInput.x > 0 ? _facingForward :
                              _axisInput.x < 0 ? _facingBackwards : transform.rotation;
+        // movement
+        HorizontalMovement();
+        // jumping / falling
+        VerticalMovement();
+        // physics gravity
+        _movement += Physics.gravity * Time.deltaTime;
+        _controller.Move(_movement * Time.deltaTime);
+    }
 
-        if (_controller.isGrounded || _groundCollider.IsGrounded)
+    void VerticalMovement()
+    {
+        if (_controller.isGrounded && _groundCollider.IsGrounded)
         {
-            _axisInput.y = Input.GetAxisRaw("Vertical");
-            // movement
-            _animator.SetFloat("Horizontal", _axisInput.x);
-            _animator.SetBool("Falling", false);
-            // move character
-            _axisInput.x *= _character.HorizontalSpeed;
-
-            // jumped
-            if (_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Movement"))
+            if (_axisInput.y > 0)
             {
-                _axisInput.y *= _character.JumpSpeed;
+                _movement.y = _character.JumpSpeed * _axisInput.y;
                 _animator.SetTrigger("Jump");
             }
+            
         }
         else
         {
             _animator.SetBool("Falling", true);
-            _axisInput.x *= _character.AirStrafeSpeed;
-        }
 
-        _axisInput += Physics.gravity * Time.deltaTime;
-        _controller.Move(_axisInput * Time.deltaTime);
+            // double jump
+            if(_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
+            {
+                _movement.y = _character.JumpSpeed * _axisInput.y;
+                _animator.SetTrigger("Double Jump");
+                didDoubleJump = true;
+            }
+        }
+    }
+
+    void HorizontalMovement()
+    {
+        if (_controller.isGrounded && _groundCollider.IsGrounded)
+        {
+            _movement.x = _character.HorizontalSpeed * _axisInput.x;
+            _animator.SetFloat("Horizontal", _axisInput.x);
+            // reset vertical states
+            _animator.SetBool("Falling", false);
+            _animator.ResetTrigger("Jump");
+            _animator.ResetTrigger("Double Jump");
+        }
+        else
+        {
+            _movement.x = _character.AirStrafeSpeed * _axisInput.x;
+        }
     }
 }
