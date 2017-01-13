@@ -31,7 +31,8 @@ public class PlayerPresenter : MonoBehaviour
 		for(int i = 0; i < numberOfPlayers; i++)
 		{
 			Players[i] = Instantiate(_playerPrefab);
-			Players[i].transform.SetParent(_playersParent);
+			Players[i].transform.SetParent(_playersParent, false);
+			Players[i].transform.Translate(Vector3.forward * i);
 			Players[i].name = "Player " + (i + 1);
 			// assign input Configurations
 			var movementInput = Players[i].GetComponent<PlayerMovementInput>();

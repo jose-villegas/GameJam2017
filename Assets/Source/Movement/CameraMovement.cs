@@ -18,7 +18,6 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         _target = new GameObject("Camera Target").transform;
-        transform.rotation = Quaternion.LookRotation(_target.position - transform.position, Vector3.up);
         // look for players
         _players = GameObject.FindGameObjectsWithTag("Player");
     }

@@ -6,6 +6,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private SidescrollingActor _character;
     [SerializeField] private GroundCollider _groundCollider;
     [SerializeField] private PlayerMovementInput _movementInput;
+    [SerializeField] private float _gravity = 9.81f;
 
     private CharacterController _controller;
     private Animator _animator;
@@ -29,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
             StandardMessages.MissingComponent<GroundCollider>(this);
             StandardMessages.DisablingBehaviour(this);
         }
-        
+
         if (!this.FindComponent(ref _animator))
         {
             StandardMessages.MissingComponent<Animator>(this);
@@ -64,7 +65,7 @@ public class CharacterMovement : MonoBehaviour
         // jumping / falling
         VerticalMovement();
         // physics gravity
-        _movement += Physics.gravity * Time.deltaTime;
+         _movement.y -= _gravity * Time.deltaTime;
         _controller.Move(_movement * Time.deltaTime);
     }
 
@@ -72,9 +73,11 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_controller.isGrounded && _groundCollider.IsGrounded)
         {
+            _movement.y = 0;
+
             if (_axisInput.y > 0)
             {
-                _movement.y = _character.JumpSpeed * _axisInput.y;
+                _movement.y = _character.JumpSpeed;
                 _animator.SetTrigger("Jump");
             }
 
@@ -87,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
             // double jump
             if (_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
             {
-                _movement.y = _character.JumpSpeed * _axisInput.y;
+                _movement.y += _character.JumpSpeed;
                 _animator.SetTrigger("Double Jump");
                 didDoubleJump = true;
             }

@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06865bb1ec69dc94d9f49eaf6b00e4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   _distance: {x: 0, y: 3, z: -6}
+  _targetTranslate: {x: 0, y: 0, z: 0}
   _smoothTime: 10
 --- !u!1 &1881125461
 GameObject:
