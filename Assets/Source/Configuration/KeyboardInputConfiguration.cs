@@ -12,6 +12,7 @@ public class KeyboardInputConfiguration : ScriptableObject, IDevice
     public KeyCode MoveBackKey = KeyCode.A;
     [Header("Keyboard - Gameplay Commands")]
     public KeyCode JumpKey = KeyCode.Space;
+    public KeyCode SprintKey = KeyCode.LeftShift;
 
     public float Forward
     {
@@ -21,6 +22,11 @@ public class KeyboardInputConfiguration : ScriptableObject, IDevice
     public bool Jump
     {
         get { return Input.GetKeyDown(JumpKey); }
+    }
+
+    public bool Sprint
+    {
+        get { return Input.GetKeyDown(SprintKey); }
     }
 }
 
