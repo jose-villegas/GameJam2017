@@ -15,10 +15,10 @@ TagManager:
   - 
   - Enviroment
   - Characters
-  - GroundCheck
+  - GroundTrigger
   - Interactables
-  - 
-  - 
+  - DynamicTrigger
+  - Dynamic
   - 
   - 
   - 
