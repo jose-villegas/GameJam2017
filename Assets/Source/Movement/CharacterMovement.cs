@@ -71,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
 
     void VerticalMovement()
     {
-        if (_controller.isGrounded && _groundCollider.IsGrounded)
+        if (_controller.isGrounded || _groundCollider.IsGrounded)
         {
             _movement.y = 0;
 
@@ -99,7 +99,7 @@ public class CharacterMovement : MonoBehaviour
 
     void HorizontalMovement()
     {
-        if (_controller.isGrounded && _groundCollider.IsGrounded)
+        if (_controller.isGrounded || _groundCollider.IsGrounded)
         {
             _movement.x = _character.HorizontalSpeed * _axisInput.x;
             _animator.SetFloat("Horizontal", _axisInput.x);

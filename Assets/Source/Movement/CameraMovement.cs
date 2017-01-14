@@ -33,11 +33,12 @@ public class CameraMovement : MonoBehaviour
             _target.position = (_players[0].transform.position + _players[1].transform.position) / 2.0f;
             _target.position += _targetTranslate;
         }
+
         // look at camera position and rotation
         Vector3 targetPosition = _target.position + _distance;
         Quaternion targetRotation = Quaternion.LookRotation(_target.position - transform.position, Vector3.up);
         // adapt camera to targets
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _smoothTime * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 2.0f * _smoothTime * Time.deltaTime);
     }
 }
