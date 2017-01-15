@@ -36,13 +36,13 @@ public class CharacterMovement : MonoBehaviour
         // jumping / falling
         VerticalMovement();
         // physics gravity
-         _movement.y -= _gravity * Time.deltaTime;
+        _movement.y -= _gravity * Time.deltaTime;
         _playerInfo.Controller.Move(_movement * Time.deltaTime);
     }
 
     void VerticalMovement()
     {
-        if (_playerInfo.Controller.isGrounded || _playerInfo.GroundCollider.IsGrounded)
+        if (_playerInfo.Controller.isGrounded)
         {
             _movement.y = 0;
 
@@ -70,7 +70,7 @@ public class CharacterMovement : MonoBehaviour
 
     void HorizontalMovement()
     {
-        if (_playerInfo.Controller.isGrounded || _playerInfo.GroundCollider.IsGrounded)
+        if (_playerInfo.Controller.isGrounded)
         {
             _movement.x = _playerInfo.Character.HorizontalSpeed * _axisInput.x;
             _playerInfo.Animator.SetFloat("Horizontal", _axisInput.x);

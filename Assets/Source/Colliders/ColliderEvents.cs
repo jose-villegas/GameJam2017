@@ -4,12 +4,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class ColliderEvents : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _onTriggerEnter;
-    [SerializeField] private UnityEvent _onTriggerStay;
-    [SerializeField] private UnityEvent _OnTriggerExit;
-    [SerializeField] private UnityEvent _onCollisionEnter;
-    [SerializeField] private UnityEvent _onCollisionStay;
-    [SerializeField] private UnityEvent _OnCollisionExit;
+    [SerializeField] private UnityEvent _onEnter;
+    [SerializeField] private UnityEvent _onStay;
+    [SerializeField] private UnityEvent _OnExit;
     private Collider _collider;
 
     /// <summary>
@@ -32,9 +29,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (_onCollisionEnter != null)
+        if (_onEnter != null)
         {
-            _onCollisionEnter.Invoke();
+            _onEnter.Invoke();
         }
     }
 
@@ -45,9 +42,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionStay(Collision other)
     {
-        if (_onCollisionStay != null)
+        if (_onStay != null)
         {
-            _onCollisionStay.Invoke();
+            _onStay.Invoke();
         }
     }
 
@@ -58,9 +55,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionExit(Collision other)
     {
-        if (_OnCollisionExit != null)
+        if (_OnExit != null)
         {
-            _OnCollisionExit.Invoke();
+            _OnExit.Invoke();
         }
     }
 
@@ -70,9 +67,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        if (_onTriggerEnter != null)
+        if (_onEnter != null)
         {
-            _onTriggerEnter.Invoke();
+            _onEnter.Invoke();
         }
     }
 
@@ -83,9 +80,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerStay(Collider other)
     {
-        if (_onTriggerStay != null)
+        if (_onStay != null)
         {
-            _onTriggerStay.Invoke();
+            _onStay.Invoke();
         }
     }
 
@@ -95,9 +92,9 @@ public class ColliderEvents : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerExit(Collider other)
     {
-        if (_OnTriggerExit != null)
+        if (_OnExit != null)
         {
-            _OnTriggerExit.Invoke();
+            _OnExit.Invoke();
         }
     }
 }

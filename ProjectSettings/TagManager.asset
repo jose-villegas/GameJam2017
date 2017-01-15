@@ -14,13 +14,13 @@ TagManager:
   - 
   - 
   - Enviroment
-  - Characters
-  - GroundTrigger
+  - Players
+  - 
   - Interactables
-  - DynamicTrigger
+  - Enemies
   - Dynamic
-  - 
-  - 
+  - EnviromentDamage
+  - PlayerDamage
   - 
   - 
   - 

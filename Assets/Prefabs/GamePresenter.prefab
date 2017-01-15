@@ -390,9 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b7d9adfb23cb9488a3ee68efa4d94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player1Prefab: {fileID: 114000010852273370, guid: 5eb09395d9b8733459912b8094fdf1fc,
+  _player1Prefab: {fileID: 114000011676041538, guid: 5eb09395d9b8733459912b8094fdf1fc,
     type: 2}
-  _player2Prefab: {fileID: 114000010852273370, guid: 5eb09395d9b8733459912b8094fdf1fc,
+  _player2Prefab: {fileID: 114000011676041538, guid: 5eb09395d9b8733459912b8094fdf1fc,
     type: 2}
   _playersParent: {fileID: 4000011445787556}
   _player1Input: {fileID: 114000013742529404}
