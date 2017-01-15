@@ -4,16 +4,14 @@ using System.Collections;
 public class PlayerPresenter : MonoBehaviour
 {
     [HeaderAttribute("Player Setup")]
-    [SerializeField]
-    private GameObject _playerPrefab;
+    [SerializeField] private PlayerInfo _player1Prefab;
+	[SerializeField] private PlayerInfo _player2Prefab;
     [SerializeField] private Transform _playersParent;
-    public GameObject[] Players { get; private set; }
+    public PlayerInfo[] Players { get; private set; }
 
     [HeaderAttribute("Input Configurations")]
-    [SerializeField] private InputConfiguration _player1;
-    [SerializeField] private InputConfiguration _player2;
-
-	private int numberOfPlayers = 2;
+    [SerializeField] private InputConfiguration _player1Input;
+    [SerializeField] private InputConfiguration _player2Input;
 
 	/// <summary>
 	/// Start is called on the frame when a script is enabled just before
@@ -26,27 +24,23 @@ public class PlayerPresenter : MonoBehaviour
 	
 	void CreatePlayers()
 	{
-		Players = new GameObject[numberOfPlayers];
+		Players = new PlayerInfo[2];
 
-		for(int i = 0; i < numberOfPlayers; i++)
+		for(int i = 0; i < 2; i++)
 		{
-			Players[i] = Instantiate(_playerPrefab);
-			Players[i].transform.SetParent(_playersParent, false);
-			Players[i].transform.Translate(Vector3.forward * i);
-			Players[i].name = "Player " + (i + 1);
+			Players[i] = Instantiate(i == 0 ? _player1Prefab : _player2Prefab);
+			
 			// assign input Configurations
-			var movementInput = Players[i].GetComponent<PlayerMovementInput>();
+			var movementInput = Players[i].MovementInput;
 
 			if(null != movementInput)
 			{
-				switch (i)
-				{
-					case 0:
-						movementInput.Configuration = _player1; break;
-					case 1:
-						movementInput.Configuration = _player2; break;
-				}
+				movementInput.Configuration = i == 0 ? _player1Input : _player2Input;
 			}
+
+			Players[i].transform.SetParent(_playersParent, false);
+			Players[i].transform.Translate(Vector3.forward * i);
+			Players[i].name = "Player " + (i + 1);
 		}
 	}
 }

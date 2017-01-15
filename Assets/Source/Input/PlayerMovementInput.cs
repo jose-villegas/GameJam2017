@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerMovementInput : MonoBehaviour
 {
     [Tooltip("Input configuration behavior, if none is given GetComponent is used")]
-    [SerializeField]
-    private InputConfiguration _configuration;
+    [SerializeField] private InputConfiguration _configuration;
     [Tooltip("Controls if input is slowly interpolated or use raw values")]
     [SerializeField]
     private bool _enableSmoothing = true;

@@ -1,15 +1,10 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(CharacterController))]
+[RequireComponent(typeof(Animator), typeof(CharacterController), typeof(PlayerInfo))]
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private SidescrollingActor _character;
-    [SerializeField] private GroundCollider _groundCollider;
-    [SerializeField] private PlayerMovementInput _movementInput;
     [SerializeField] private float _gravity = 9.81f;
-
-    private CharacterController _controller;
-    private Animator _animator;
+    private PlayerInfo _playerInfo;
     private Vector3 _axisInput;
     private Vector3 _movement;
     private Quaternion _facingForward;
@@ -19,33 +14,9 @@ public class CharacterMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!this.FindComponent(ref _controller))
+        if (!this.FindComponent(ref _playerInfo))
         {
-            StandardMessages.MissingComponent<CharacterController>(this);
-            StandardMessages.DisablingBehaviour(this);
-        }
-
-        if (!this.FindComponent(ref _groundCollider, true))
-        {
-            StandardMessages.MissingComponent<GroundCollider>(this);
-            StandardMessages.DisablingBehaviour(this);
-        }
-
-        if (!this.FindComponent(ref _animator))
-        {
-            StandardMessages.MissingComponent<Animator>(this);
-            StandardMessages.DisablingBehaviour(this);
-        }
-
-        if (!this.FindComponent(ref _movementInput))
-        {
-            StandardMessages.MissingComponent<PlayerMovementInput>(this);
-            StandardMessages.DisablingBehaviour(this);
-        }
-
-        if (!_character)
-        {
-            StandardMessages.MissingAsset<SidescrollingActor>(this);
+            StandardMessages.MissingComponent<PlayerInfo>(this);
             StandardMessages.DisablingBehaviour(this);
         }
 
@@ -55,8 +26,8 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        _axisInput.x = _movementInput.Forward;
-        _axisInput.y = _movementInput.Jump ? 1 : 0;
+        _axisInput.x = _playerInfo.MovementInput.Forward;
+        _axisInput.y = _playerInfo.MovementInput.Jump ? 1 : 0;
         // turning
         transform.rotation = _axisInput.x > 0 ? _facingForward :
                              _axisInput.x < 0 ? _facingBackwards : transform.rotation;
@@ -66,32 +37,32 @@ public class CharacterMovement : MonoBehaviour
         VerticalMovement();
         // physics gravity
          _movement.y -= _gravity * Time.deltaTime;
-        _controller.Move(_movement * Time.deltaTime);
+        _playerInfo.Controller.Move(_movement * Time.deltaTime);
     }
 
     void VerticalMovement()
     {
-        if (_controller.isGrounded || _groundCollider.IsGrounded)
+        if (_playerInfo.Controller.isGrounded || _playerInfo.GroundCollider.IsGrounded)
         {
             _movement.y = 0;
 
             if (_axisInput.y > 0)
             {
-                _movement.y = _character.JumpSpeed;
-                _animator.SetTrigger("Jump");
+                _movement.y = _playerInfo.Character.JumpSpeed;
+                _playerInfo.Animator.SetTrigger("Jump");
             }
 
             didDoubleJump = false;
         }
         else
         {
-            _animator.SetBool("Falling", true);
+            _playerInfo.Animator.SetBool("Falling", true);
 
             // double jump
-            if (_axisInput.y > 0 && _animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
+            if (_axisInput.y > 0 && _playerInfo.Animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
             {
-                _movement.y += _character.JumpSpeed;
-                _animator.SetTrigger("Double Jump");
+                _movement.y += _playerInfo.Character.JumpSpeed;
+                _playerInfo.Animator.SetTrigger("Double Jump");
                 didDoubleJump = true;
             }
         }
@@ -99,18 +70,18 @@ public class CharacterMovement : MonoBehaviour
 
     void HorizontalMovement()
     {
-        if (_controller.isGrounded || _groundCollider.IsGrounded)
+        if (_playerInfo.Controller.isGrounded || _playerInfo.GroundCollider.IsGrounded)
         {
-            _movement.x = _character.HorizontalSpeed * _axisInput.x;
-            _animator.SetFloat("Horizontal", _axisInput.x);
+            _movement.x = _playerInfo.Character.HorizontalSpeed * _axisInput.x;
+            _playerInfo.Animator.SetFloat("Horizontal", _axisInput.x);
             // reset vertical states
-            _animator.SetBool("Falling", false);
-            _animator.ResetTrigger("Jump");
-            _animator.ResetTrigger("Double Jump");
+            _playerInfo.Animator.SetBool("Falling", false);
+            _playerInfo.Animator.ResetTrigger("Jump");
+            _playerInfo.Animator.ResetTrigger("Double Jump");
         }
         else
         {
-            _movement.x = _character.AirStrafeSpeed * _axisInput.x;
+            _movement.x = _playerInfo.Character.AirStrafeSpeed * _axisInput.x;
         }
     }
 }
