@@ -3,13 +3,31 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private Transform _playersParent;
     [SerializeField] private Vector3 _distance = Vector3.forward;
     [SerializeField] private Vector3 _targetTranslate = Vector3.zero;
     [SerializeField] private float _smoothTime;
     private Vector3 _velocity = Vector3.zero;
 
     private Transform _target;
-    private GameObject[] _players;
+    private Transform[] _players;
+    private Transform[] Players
+    {
+        get
+        {
+            if (_players == null || _players.Length == 0)
+            {
+                _players = new Transform[_playersParent.childCount];
+
+                for(int i = 0; i < _playersParent.childCount; i++)
+                {
+                    _players[i] = _playersParent.GetChild(i);
+                }
+            }
+
+            return _players;
+        }
+    }
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -18,8 +36,6 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         _target = new GameObject("Camera Target").transform;
-        // look for players
-        _players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     /// <summary>
@@ -28,9 +44,9 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // target will be in the middle of players -- assume two players
-        if(_players.Length == 2)
+        if (Players.Length == 2)
         {
-            _target.position = (_players[0].transform.position + _players[1].transform.position) / 2.0f;
+            _target.position = (Players[0].position + Players[1].position) / 2.0f;
             _target.position += _targetTranslate;
         }
 

@@ -202,13 +202,12 @@ GameObject:
   - 95: {fileID: 95000010841772384}
   - 54: {fileID: 54000014127757746}
   - 195: {fileID: 195000011423696242}
-  - 65: {fileID: 65000013758595796}
   - 136: {fileID: 136000010798606740}
   - 114: {fileID: 114000011339750232}
   - 114: {fileID: 114000010880489256}
   m_Layer: 12
   m_Name: Enemy_Bot
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,6 +777,22 @@ GameObject:
   - 4: {fileID: 4000012369339452}
   m_Layer: 12
   m_Name: mixamorig:HeadTop_End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012846302928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011494831836}
+  - 65: {fileID: 65000010544755058}
+  m_Layer: 15
+  m_Name: PlayerDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,6 +1390,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012252245098}
   m_RootOrder: 0
+--- !u!4 &4000011494831836
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012846302928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012116705064}
+  m_RootOrder: 3
 --- !u!4 &4000011649805634
 Transform:
   m_ObjectHideFlags: 1
@@ -1485,6 +1513,7 @@ Transform:
   - {fileID: 4000010206121214}
   - {fileID: 4000011261192116}
   - {fileID: 4000013890583270}
+  - {fileID: 4000011494831836}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000012122406854
@@ -2067,15 +2096,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000013758595796
+--- !u!65 &65000010544755058
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010582491476}
+  m_GameObject: {fileID: 1000012846302928}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1.8, z: 0.75}
   m_Center: {x: 0, y: 0.9, z: 0}

@@ -101,6 +101,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010291783828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010378296122}
+  - 65: {fileID: 65000010945899598}
+  m_Layer: 9
+  m_Name: TriggerVolume
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010348692180
 GameObject:
   m_ObjectHideFlags: 1
@@ -805,10 +821,10 @@ GameObject:
   - 143: {fileID: 143000014098911418}
   - 54: {fileID: 54000013432501360}
   - 136: {fileID: 136000013726955618}
-  - 65: {fileID: 65000012095504010}
   - 114: {fileID: 114000011676041538}
   - 114: {fileID: 114000010939340062}
   - 114: {fileID: 114000014250277224}
+  - 114: {fileID: 114000012925324834}
   m_Layer: 9
   m_Name: Y_Bot
   m_TagString: Player
@@ -1139,6 +1155,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013576209490}
   m_RootOrder: 0
+--- !u!4 &4000010378296122
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010291783828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013774247918}
+  m_RootOrder: 3
 --- !u!4 &4000010460437626
 Transform:
   m_ObjectHideFlags: 1
@@ -1952,6 +1981,7 @@ Transform:
   - {fileID: 4000011786616530}
   - {fileID: 4000014253686010}
   - {fileID: 4000014126252246}
+  - {fileID: 4000010378296122}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013897289574
@@ -2068,12 +2098,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000012095504010
+--- !u!65 &65000010945899598
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013402449410}
+  m_GameObject: {fileID: 1000010291783828}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -2124,6 +2154,21 @@ MonoBehaviour:
   _movementInput: {fileID: 0}
   _controller: {fileID: 0}
   _animator: {fileID: 0}
+--- !u!114 &114000012925324834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013402449410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc5462b91290184b895566fc9911ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageLayers:
+    serializedVersion: 2
+    m_Bits: 49152
+  _immunityTime: 0
 --- !u!114 &114000014250277224
 MonoBehaviour:
   m_ObjectHideFlags: 1
