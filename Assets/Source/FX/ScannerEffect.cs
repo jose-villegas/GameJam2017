@@ -4,14 +4,12 @@ using System.Collections;
 [ExecuteInEditMode]
 public class ScannerEffect : MonoBehaviour
 {
-	public float CheckRange = 5f;
-    public float Speed = 50f;
-    public Transform ScannerOrigin;
-    public Material EffectMaterial;
-    public float ScanDistance;
-
+	[SerializeField] private float _checkRange = 5f;
+    [SerializeField] private float _speed = 50f;
+    [SerializeField] private Material _effectMaterial;
+    private float _scanDistance;
     private Camera _camera;
-
+	private Transform _scannerOrigin;
 	private float _halfRange;
     private bool _scanning;
     private Scannable[] _scannables;
@@ -19,20 +17,21 @@ public class ScannerEffect : MonoBehaviour
     void Start()
     {
         _scannables = FindObjectsOfType<Scannable>();
-		_halfRange = CheckRange / 2.0f;
+		_halfRange = _checkRange / 2.0f;
+		_scannerOrigin = transform;
     }
 
     void Update()
     {
         if (_scanning)
         {
-            ScanDistance += Time.deltaTime * Speed;
+            _scanDistance += Time.deltaTime * _speed;
 
             for (int i = 0; i < _scannables.Length; i++)
             {
-				float t = Vector3.Distance(ScannerOrigin.position, _scannables[i].transform.position);
+				float t = Vector3.Distance(_scannerOrigin.position, _scannables[i].transform.position);
 
-                if (t >= ScanDistance - _halfRange && t <= ScanDistance + _halfRange)
+                if (t >= _scanDistance - _halfRange && t <= _scanDistance + _halfRange)
                 {
 					_scannables[i].Ping();
                 }
@@ -42,7 +41,7 @@ public class ScannerEffect : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             _scanning = true;
-            ScanDistance = 0;
+            _scanDistance = 0;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -53,11 +52,18 @@ public class ScannerEffect : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 _scanning = true;
-                ScanDistance = 0;
-                ScannerOrigin.position = hit.point;
+                _scanDistance = 0;
+                _scannerOrigin.position = hit.point;
             }
         }
     }
+
+	public void InitiateScan(Transform origin)
+	{
+		_scanning = true;
+		_scanDistance = 0;
+		_scannerOrigin = origin;
+	}
 
     void OnEnable()
     {
@@ -67,9 +73,11 @@ public class ScannerEffect : MonoBehaviour
     [ImageEffectOpaque]
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
-        EffectMaterial.SetVector("_WorldSpaceScannerPos", ScannerOrigin.position);
-        EffectMaterial.SetFloat("_ScanDistance", ScanDistance);
-        RaycastCornerBlit(src, dst, EffectMaterial);
+		if(!_scannerOrigin) _scannerOrigin = transform;
+ 
+        _effectMaterial.SetVector("_WorldSpaceScannerPos", _scannerOrigin.position);
+        _effectMaterial.SetFloat("_ScanDistance", _scanDistance);
+        RaycastCornerBlit(src, dst, _effectMaterial);
     }
 
     void RaycastCornerBlit(RenderTexture source, RenderTexture dest, Material mat)

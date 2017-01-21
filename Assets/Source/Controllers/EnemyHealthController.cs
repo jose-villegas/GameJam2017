@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(PlayerInfo), typeof(Collider))]
+[RequireComponent(typeof(EnemyPatrolInfo), typeof(Collider))]
 public class EnemyHealthController : MonoBehaviour {
 
 	[SerializeField] private LayerMask _damageLayers;
-	private PlayerInfo _playerInfo;
+	private EnemyPatrolInfo _enemyInfo;
 
 	// Use this for initialization
 	void Start () {
 
-		if (!this.FindComponent(ref _playerInfo))
+		if (!this.FindComponent(ref _enemyInfo))
         {
-            StandardMessages.MissingComponent<PlayerInfo>(this);
+            StandardMessages.MissingComponent<EnemyPatrolInfo>(this);
             StandardMessages.DisablingBehaviour(this);
         }
 	}
