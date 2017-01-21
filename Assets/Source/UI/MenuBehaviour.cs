@@ -4,44 +4,40 @@ using UnityEngine.SceneManagement;
 
 public class MenuBehaviour : MonoBehaviour {
 
-	public Canvas QuitMenu;
+	public Canvas quitMenu;
 	public Button starText;
-	public Button exitText;
+	public Button exitText;	
 
 	// Use this for initialization
 	void Start () {
 
-		QuitMenu.GetComponent<Canvas>();
+		quitMenu.GetComponent<Canvas>();
 		starText.GetComponent<Button>();
 		exitText.GetComponent<Button>();
-		QuitMenu.enabled = false;
+		quitMenu.enabled = false;
+
 	}
 
-	public void exitPress(){
+	public void ExitPress(){
 
-		QuitMenu.enabled = true;
+		quitMenu.enabled = true;
 		starText.enabled = false;
 		exitText.enabled = false;
 	}
 
-	public void noPress(){
+	public void NoPress(){
 
-		QuitMenu.enabled = false;
+		quitMenu.enabled = false;
 		starText.enabled = true;
 		exitText.enabled = true;
 	}
 
 
-	public void startLevel(){
+	public void StartLevel(){
 		//SceneManager.LoadScene(); cuando exista la primera escena colocar aqui
 	}
 
-	public void exitGame(){
+	public void ExitGame(){
 		Application.Quit();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
