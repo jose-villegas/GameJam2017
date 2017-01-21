@@ -20,7 +20,7 @@ TagManager:
   - Enemies
   - Dynamic
   - EnviromentDamage
-  - PlayerDamage
+  - DamageToPlayers
   - 
   - 
   - 

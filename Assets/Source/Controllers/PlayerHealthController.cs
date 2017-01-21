@@ -2,12 +2,17 @@
 using System.Collections;
 
 [RequireComponent(typeof(PlayerInfo), typeof(Collider))]
-public class PlayerHealthController : MonoBehaviour
+public class PlayerHealthController : MonoBehaviour, IHittable
 {
     [TooltipAttribute("Layers from where the player would receive damage")]
-    [SerializeField] private LayerMask _damageLayers;
-    [SerializeField] private int _immunityTime;
+    [SerializeField]
+    private LayerMask _damageLayers;
+    [HeaderAttribute("Immunity")]
+    [SerializeField]
+    private int _immunityTime;
     private PlayerInfo _playerInfo;
+    private int _healthPoints;
+    private bool _isImmune;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -20,6 +25,8 @@ public class PlayerHealthController : MonoBehaviour
             StandardMessages.MissingComponent<PlayerInfo>(this);
             StandardMessages.DisablingBehaviour(this);
         }
+
+        _healthPoints = _playerInfo.Character.HealthPoints;
     }
 
     /// <summary>
@@ -28,9 +35,30 @@ public class PlayerHealthController : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
-        if((_damageLayers.value & (1 << other.gameObject.layer)) > 0)
+        if (!_isImmune && (_damageLayers.value & (1 << other.gameObject.layer)) > 0)
         {
-            Debug.Log("Hit");
+            StartCoroutine(TemporalImmunity(other.gameObject));
+            Hit();
         }
+    }
+
+    private IEnumerator TemporalImmunity(GameObject other)
+    {
+        _isImmune = true;
+        // disable collision
+        var eCollider = other.transform.parent.GetComponent<Collider>();
+        yield return new WaitForSeconds(0.25f);
+        Physics.IgnoreCollision(eCollider, _playerInfo.Controller, true);
+        // wait immunity time
+        yield return new WaitForSeconds(_immunityTime);
+        // enable collision
+        Physics.IgnoreCollision(eCollider, _playerInfo.Controller, false);
+        // restore from immunity
+        _isImmune = false;
+    }
+
+    public void Hit()
+    {
+        Debug.Log("Hit");
     }
 }

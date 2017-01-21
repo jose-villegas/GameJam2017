@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.4967872, b: 0.57508564, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.57508564, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012116705064, guid: 27b857079ab2c274e9c3d84bbb2e3861, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.724613
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000012116705064, guid: 27b857079ab2c274e9c3d84bbb2e3861, type: 2}
       propertyPath: m_LocalPosition.y
@@ -132,37 +132,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27b857079ab2c274e9c3d84bbb2e3861, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &166089694 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000010582491476, guid: 27b857079ab2c274e9c3d84bbb2e3861,
+--- !u!4 &640090798 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011445787556, guid: 94d65673f9270574fb0beb12458b64fc,
     type: 2}
-  m_PrefabInternal: {fileID: 166089693}
---- !u!114 &166089695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 166089694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492e7a9520e3b1146a4a748f95edd2c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _points: []
---- !u!114 &166089696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 166089694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94d1d65895cd3c1478995fdce18d8e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _character: {fileID: 0}
-  _animator: {fileID: 0}
-  _agent: {fileID: 0}
+  m_PrefabInternal: {fileID: 1964447242}
 --- !u!1 &926180802
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +199,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1190760016
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06865bb1ec69dc94d9f49eaf6b00e4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playersParent: {fileID: 640090798}
   _distance: {x: 0, y: 3, z: -6}
   _targetTranslate: {x: 0, y: 0.5, z: 0}
   _smoothTime: 10
