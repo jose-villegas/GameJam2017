@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77b0862f8d046104d9e7b776a20eae11, type: 3}
   m_Name: Main Character
   m_EditorClassIdentifier: 
+  HealthPoints: 3
   HorizontalSpeed: 3.5
   JumpSpeed: 8
   AirStrafeSpeed: 2

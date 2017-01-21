@@ -59,6 +59,13 @@ public class PlayerHealthController : MonoBehaviour, IHittable
 
     public void Hit()
     {
+        _healthPoints--;
+
+        if(_healthPoints <= 0)
+        {
+            Debug.Log("Died");
+        }
+
         Debug.Log("Hit");
     }
 }

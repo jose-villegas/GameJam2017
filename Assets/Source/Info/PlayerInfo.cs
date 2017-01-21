@@ -7,6 +7,7 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private PlayerMovementInput _movementInput;
     [SerializeField] private CharacterController _controller;
     [SerializeField] private Animator _animator;
+    [SerializeField] private InputConfiguration _inputConfiguration;
 
     public SidescrollingActor Character
     {
@@ -56,6 +57,18 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+    public InputConfiguration InputConfiguration
+    {
+        get
+        {
+            return _inputConfiguration;
+        }
+        set
+        {
+            _inputConfiguration = value;
+        }
+    }
+
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
@@ -82,6 +95,12 @@ public class PlayerInfo : MonoBehaviour
         if (!_character)
         {
             StandardMessages.MissingAsset<SidescrollingActor>(this);
+            StandardMessages.DisablingBehaviour(this);
+        }
+
+        if (!this.FindComponent(ref _inputConfiguration))
+        {
+            StandardMessages.MissingComponent<InputConfiguration>(this);
             StandardMessages.DisablingBehaviour(this);
         }
     }
