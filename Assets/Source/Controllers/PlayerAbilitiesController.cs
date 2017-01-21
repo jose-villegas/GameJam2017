@@ -15,7 +15,7 @@ public class PlayerAbilitiesController : MonoBehaviour
     [SerializeField] private AbilityMode _currentMode;
     private int _staminaBar;
     private PlayerInfo _playerInfo;
-
+    private ScannerEffect _scannerEffect;
     private bool _scannerReady = false;
     private float _scannerAbilityHeldTime = 0.0f;
     private bool _attackLocked = false;
@@ -40,6 +40,7 @@ public class PlayerAbilitiesController : MonoBehaviour
             StandardMessages.DisablingBehaviour(this);
         }
 
+        _scannerEffect = FindObjectOfType<ScannerEffect>();
         _staminaBar = _playerInfo.Character.StaminaPoints;
     }
 
@@ -58,7 +59,11 @@ public class PlayerAbilitiesController : MonoBehaviour
     public void UseScanner()
     {
 		_staminaBar++;
-        Debug.Log("Scanner");
+        
+        if(_scannerEffect != null)
+        {
+            _scannerEffect.InitiateScan(transform);
+        }
     }
 
     public void UseAttack()
