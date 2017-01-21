@@ -15,7 +15,6 @@ public class EnemyHealthController : MonoBehaviour {
             StandardMessages.MissingComponent<PlayerInfo>(this);
             StandardMessages.DisablingBehaviour(this);
         }
-	
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -24,10 +23,5 @@ public class EnemyHealthController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
