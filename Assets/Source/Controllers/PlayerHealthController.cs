@@ -63,6 +63,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
 
         if(_healthPoints <= 0)
         {
+            EventManager.TriggerEvent("PlayerDied");
             Debug.Log("Died");
         }
 
