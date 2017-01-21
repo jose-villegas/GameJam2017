@@ -4,6 +4,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class ScannerEffect : MonoBehaviour
 {
+	public float CheckRange = 5f;
     public float Speed = 50f;
     public Transform ScannerOrigin;
     public Material EffectMaterial;
@@ -11,13 +12,14 @@ public class ScannerEffect : MonoBehaviour
 
     private Camera _camera;
 
-    // Demo Code
+	private float _halfRange;
     private bool _scanning;
     private Scannable[] _scannables;
 
     void Start()
     {
         _scannables = FindObjectsOfType<Scannable>();
+		_halfRange = CheckRange / 2.0f;
     }
 
     void Update()
@@ -28,7 +30,9 @@ public class ScannerEffect : MonoBehaviour
 
             for (int i = 0; i < _scannables.Length; i++)
             {
-                if (Vector3.Distance(ScannerOrigin.position, _scannables[i].transform.position) <= ScanDistance)
+				float t = Vector3.Distance(ScannerOrigin.position, _scannables[i].transform.position);
+
+                if (t >= ScanDistance - _halfRange && t <= ScanDistance + _halfRange)
                 {
 					_scannables[i].Ping();
                 }
@@ -54,7 +58,6 @@ public class ScannerEffect : MonoBehaviour
             }
         }
     }
-    // End Demo Code
 
     void OnEnable()
     {

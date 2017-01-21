@@ -14,6 +14,12 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     private int _healthPoints;
     private bool _isImmune;
 
+    public int HealthPoints
+    {
+        get { return _healthPoints; }
+        set { _healthPoints = value; }
+    }
+
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
@@ -37,7 +43,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     {
         if (!_isImmune && (_damageLayers.value & (1 << other.gameObject.layer)) > 0)
         {
-            StartCoroutine(TemporalImmunity(other.gameObject));
+            TemporalImmunity(other.gameObject).Start();
             Hit();
         }
     }

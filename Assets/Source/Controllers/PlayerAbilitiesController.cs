@@ -21,6 +21,13 @@ public class PlayerAbilitiesController : MonoBehaviour
     private bool _attackLocked = false;
     private float _attackLockedTime = 0.0f;
 
+    public int StaminaPoints
+    {
+        get { return _staminaBar; }
+        set { _staminaBar = value; }
+    }
+
+
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
