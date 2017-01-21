@@ -1,11 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-[System.Serializable]
+[RequireComponent(typeof(PlayerInfo))]
 public class PlayerMovementInput : MonoBehaviour
 {
-    [Tooltip("Input configuration behavior, if none is given GetComponent is used")]
-    [SerializeField] private InputConfiguration _configuration;
+    private PlayerInfo _playerInfo;
     [Tooltip("Controls if input is slowly interpolated or use raw values")]
     [SerializeField]
     private bool _enableSmoothing = true;
@@ -27,18 +26,13 @@ public class PlayerMovementInput : MonoBehaviour
         get { return _enableSmoothing; }
         set { _enableSmoothing = value; }
     }
-    public InputConfiguration Configuration
-    {
-        get { return _configuration; }
-        set { _configuration = value; }
-    }
 
     private void Start()
     {
         // obtain required components if they aren't given through the editor
-        if (!this.FindComponent(ref _configuration))
+        if (!this.FindComponent(ref _playerInfo))
         {
-            StandardMessages.MissingComponent<InputConfiguration>(this);
+            StandardMessages.MissingComponent<PlayerInfo>(this);
             StandardMessages.DisablingBehaviour(this);
         }
     }
@@ -46,9 +40,9 @@ public class PlayerMovementInput : MonoBehaviour
     public void Update()
     {
         // axis for movement
-        float forward = _configuration.InputDevice.Forward;
+        float forward = _playerInfo.InputConfiguration.Device.Forward;
         // actions
-        Jump = _configuration.InputDevice.Jump;
+        Jump = _playerInfo.InputConfiguration.Device.Jump;
         // smooth movement input
         Forward = EnableSmoothing ? Mathf.Lerp(Forward, forward, Time.deltaTime * InputSmoothing) : forward;
     }

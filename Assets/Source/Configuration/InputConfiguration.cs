@@ -18,7 +18,7 @@ public class InputConfiguration : MonoBehaviour
     [Tooltip("Default Gamepad Configuration")]
     public GamepadInputConfiguration GamepadConfiguration;
 
-    public IDevice InputDevice
+    public IDevice Device
     {
         get
         {

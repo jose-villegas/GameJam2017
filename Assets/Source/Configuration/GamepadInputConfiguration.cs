@@ -15,6 +15,7 @@ public class GamepadInputConfiguration : ScriptableObject, IDevice
     [Header("Gamepad - Gameplay Commands")]
     public string GamepadJump = "button 0";
     public string GamepadSprint = "button 1";
+    public string GamepadAbility = "button 2";
 
     public float Forward
     {
@@ -29,5 +30,10 @@ public class GamepadInputConfiguration : ScriptableObject, IDevice
     public bool Sprint
     {
         get { return Input.GetKeyDown(GamepadGenericId + " " + GamepadSprint); }
+    }
+
+    public bool Ability
+    {
+        get { return Input.GetKey(GamepadGenericId + " " + GamepadAbility); }
     }
 }
