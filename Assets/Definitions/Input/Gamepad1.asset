@@ -13,4 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GamepadGenericId: joystick 1
   GamepadHorizontalInputAxis: Horizontal 1
-  GamepadJump: button 2
+  GamepadJump: button 1
+  GamepadSwitch: button 2
+  GamepadAbility: button 3
