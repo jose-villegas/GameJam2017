@@ -13,6 +13,8 @@ public class PlayerAbilitiesController : MonoBehaviour
     [SerializeField] private float _scannerHoldTime = 1f;
     [SerializeField] private float _attackLockTime = 0.5f;
     [SerializeField] private AbilityMode _currentMode;
+    [SerializeField] private BulletController _bulletPrefab;
+    [SerializeField] private Transform _bulletOrigin;
     private int _staminaBar;
     private PlayerInfo _playerInfo;
     private ScannerEffect _scannerEffect;
@@ -24,7 +26,7 @@ public class PlayerAbilitiesController : MonoBehaviour
     public int StaminaPoints
     {
         get { return _staminaBar; }
-        set { _staminaBar = value; }
+        set { _staminaBar = Mathf.Min(value, _playerInfo.Character.StaminaPoints); }
     }
 
 
@@ -41,7 +43,7 @@ public class PlayerAbilitiesController : MonoBehaviour
         }
 
         _scannerEffect = FindObjectOfType<ScannerEffect>();
-        _staminaBar = _playerInfo.Character.StaminaPoints;
+        StaminaPoints = _playerInfo.Character.StaminaPoints;
     }
 
     public void ChangeMode()
@@ -58,18 +60,35 @@ public class PlayerAbilitiesController : MonoBehaviour
 
     public void UseScanner()
     {
-		_staminaBar++;
-        
-        if(_scannerEffect != null)
+        StaminaPoints++;
+        // trigger animation
+        _playerInfo.Animator.SetTrigger("Echo");
+        // initiate scan 
+        CoroutineUtils.DelaySeconds(() =>
         {
-            _scannerEffect.InitiateScan(transform);
-        }
+            if (_scannerEffect != null)
+            {
+                _scannerEffect.InitiateScan(transform);
+            }
+        }, .15f).Start();
     }
 
     public void UseAttack()
     {
-		_staminaBar--;
-        Debug.Log("Attack");
+        StaminaPoints--;
+        // trigger animation
+        _playerInfo.Animator.SetTrigger("Attack");
+        // create bullet
+        CoroutineUtils.DelaySeconds(() =>
+        {
+            var go = Instantiate(_bulletPrefab);
+            go.transform.rotation = Quaternion.LookRotation(transform.forward, transform.up);
+            go.transform.position = _bulletOrigin.position;
+            // get bullet and fire
+            var bullet = go.GetComponent<BulletController>();
+            bullet.Fire(transform.right, 5, 10);
+        }, .15f).Start();
+
     }
 
     /// <summary>
@@ -77,6 +96,13 @@ public class PlayerAbilitiesController : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // switch mode
+        if (_playerInfo.InputConfiguration.Device.Switch)
+        {
+            ChangeMode();
+        }
+
+        // ability trigger logic        
         if (_currentMode == AbilityMode.Attacker)
         {
             if (_playerInfo.InputConfiguration.Device.Ability && !_attackLocked)
@@ -84,8 +110,8 @@ public class PlayerAbilitiesController : MonoBehaviour
                 UseAttack();
                 _attackLocked = true;
                 _attackLockedTime = 0.0f;
-            } 
-			else if (_attackLocked)
+            }
+            else if (_attackLocked)
             {
                 _attackLockedTime += Time.deltaTime;
             }

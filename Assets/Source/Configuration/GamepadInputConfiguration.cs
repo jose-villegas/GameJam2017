@@ -14,7 +14,7 @@ public class GamepadInputConfiguration : ScriptableObject, IDevice
     public string GamepadHorizontalInputAxis = "Axis X";
     [Header("Gamepad - Gameplay Commands")]
     public string GamepadJump = "button 0";
-    public string GamepadSprint = "button 1";
+    public string GamepadSwitch = "button 1";
     public string GamepadAbility = "button 2";
 
     public float Forward
@@ -27,9 +27,9 @@ public class GamepadInputConfiguration : ScriptableObject, IDevice
         get { return Input.GetKeyDown(GamepadGenericId + " " + GamepadJump); }
     }
 
-    public bool Sprint
+    public bool Switch
     {
-        get { return Input.GetKeyDown(GamepadGenericId + " " + GamepadSprint); }
+        get { return Input.GetKeyDown(GamepadGenericId + " " + GamepadSwitch); }
     }
 
     public bool Ability

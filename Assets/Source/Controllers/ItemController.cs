@@ -43,7 +43,6 @@ public class ItemController : MonoBehaviour
 
         if ((_itemLayer.value & (1 << other.gameObject.layer)) > 0)
         {
-			
             //validates the name of the object that collided  with the player
             if (other.tag == "HealthPack")
             {
