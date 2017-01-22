@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerInfo), typeof(Collider))]
@@ -13,6 +14,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     private PlayerInfo _playerInfo;
     private int _healthPoints;
     private bool _isImmune;
+    private Image content;
 
     public int HealthPoints
     {
@@ -45,6 +47,11 @@ public class PlayerHealthController : MonoBehaviour, IHittable
         {
             TemporalImmunity(other.gameObject).Start();
             Hit();
+
+            //prueba barra de salud
+            Debug.Log("before: " +  _healthPoints);
+            _healthPoints --;
+            Debug.Log("rest: " +  _healthPoints);
         }
     }
 
@@ -67,7 +74,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     {
         _healthPoints--;
 
-        if(_healthPoints <= 0)
+        if (_healthPoints <= 0)
         {
             EventManager.TriggerEvent("PlayerDied");
             Debug.Log("Died");
