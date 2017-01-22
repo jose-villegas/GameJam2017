@@ -15,6 +15,7 @@ public class PlayerAbilitiesController : MonoBehaviour
     [SerializeField] private AbilityMode _currentMode;
     [SerializeField] private BulletController _bulletPrefab;
     [SerializeField] private Transform _bulletOrigin;
+	[SerializeField] private AudioSource _shootAudio;
     private int _staminaBar;
     private PlayerInfo _playerInfo;
     private ScannerEffect _scannerEffect;
@@ -63,6 +64,7 @@ public class PlayerAbilitiesController : MonoBehaviour
         StaminaPoints++;
         // trigger animation
         _playerInfo.Animator.SetTrigger("Echo");
+		_shootAudio.Play ();
         // initiate scan 
         CoroutineUtils.DelaySeconds(() =>
         {
@@ -80,6 +82,7 @@ public class PlayerAbilitiesController : MonoBehaviour
         StaminaPoints--;
         // trigger animation
         _playerInfo.Animator.SetTrigger("Attack");
+		_shootAudio.Play ();
         // create bullet
         CoroutineUtils.DelaySeconds(() =>
         {
