@@ -541,6 +541,8 @@ GameObject:
   - 114: {fileID: 114000012406789770}
   - 114: {fileID: 114000013025119632}
   - 114: {fileID: 114000013336693094}
+  - 114: {fileID: 114000011810572154}
+  - 114: {fileID: 114000012565534234}
   m_Layer: 9
   m_Name: MainCharacter (Female)
   m_TagString: Player
@@ -2145,6 +2147,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gravity: 9.81
   _doubleJumpFX: {fileID: 198000013730302298}
+--- !u!114 &114000011810572154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012171260980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21177a6c5c24844e963706a528cf46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
 --- !u!114 &114000011876145376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2178,6 +2192,20 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 114000010563723934, guid: 6dc7e3ddd5865ec45a1a582982d2a229,
     type: 2}
   _bulletOrigin: {fileID: 4000010972724188}
+--- !u!114 &114000012565534234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012171260980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca2c630b692029498c6c7df60f9ce61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StaminaPointPrefab: {fileID: 1000013891722752, guid: ee752364381711b4f8f74220bf592719,
+    type: 2}
+  StaminaBar: {fileID: 0}
 --- !u!114 &114000013025119632
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerPresenter : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PlayerPresenter : MonoBehaviour
     [SerializeField]
     private InputConfiguration _player1Input;
     [SerializeField] private InputConfiguration _player2Input;
+    [HeaderAttribute("UI Objects")]
+    [SerializeField] private Image _healthBar1;
+    [SerializeField] private GameObject _staminaBar1;
+    [SerializeField] private Image _healthBar2;
+    [SerializeField] private GameObject _staminaBar2;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before
@@ -37,6 +43,11 @@ public class PlayerPresenter : MonoBehaviour
             Players[i].transform.SetParent(_playersParent, false);
             Players[i].transform.Translate(Vector3.right * i);
             Players[i].name = "Player " + (i + 1);
+            // pass ui references
+            var healthUI = Players[i].GetComponent<HealthBarBehaviour>();
+            healthUI.healthBar = i == 0 ? _healthBar1 : _healthBar2;
+            var staminaUI = Players[i].GetComponent<StaminaBarBehaviour>();
+            staminaUI.StaminaBar = i == 0 ? _staminaBar1 : _staminaBar2;
         }
     }
 }

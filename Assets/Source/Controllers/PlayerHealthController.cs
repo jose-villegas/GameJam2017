@@ -47,11 +47,6 @@ public class PlayerHealthController : MonoBehaviour, IHittable
         {
             TemporalImmunity(other.gameObject).Start();
             Hit();
-
-            //prueba barra de salud
-            Debug.Log("before: " +  _healthPoints);
-            _healthPoints --;
-            Debug.Log("rest: " +  _healthPoints);
         }
     }
 

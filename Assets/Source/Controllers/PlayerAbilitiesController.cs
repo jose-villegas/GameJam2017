@@ -89,7 +89,7 @@ public class PlayerAbilitiesController : MonoBehaviour
             // get bullet and fire
             var bullet = go.GetComponent<BulletController>();
             bullet.Fire(transform.right, 5, 10);
-        }, .15f).Start();
+        }, 0.75f).Start();
 
     }
 

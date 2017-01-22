@@ -3,24 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerInfo))]
-public class StaminaBarBehaviour : MonoBehaviour {
+public class StaminaBarBehaviour : MonoBehaviour
+{
 
     private PlayerInfo _playerInfo;
     private PlayerAbilitiesController _playerStamina;
-
-	[SerializeField]
-	private GameObject StaminaPoint;
+    public GameObject StaminaPointPrefab;
     int maxStamina;
+    public GameObject StaminaBar;
+    private HorizontalLayoutGroup barLayout;
+	private GameObject[] _staminaPoints;
 
-	[SerializeField]
-	private GameObject StaminaBar;
-	private HorizontalLayoutGroup barLayout;
+    // Use this for initialization
+    void Start()
+    {
 
-
-	// Use this for initialization
-	void Start () {
-
-		if (!this.FindComponent(ref _playerInfo))
+        if (!this.FindComponent(ref _playerInfo))
         {
             StandardMessages.MissingComponent<PlayerInfo>(this);
             StandardMessages.DisablingBehaviour(this);
@@ -33,11 +31,21 @@ public class StaminaBarBehaviour : MonoBehaviour {
         }
 
         maxStamina = _playerInfo.Character.StaminaPoints;
-		//barLayout = StaminaBar.GetComponent<HorizontalLayoutGroup>
-	}
-	
-	//create or deletes a bar depending of the number of existing bars and the number of stamina points that the player has.
-	/*public void CheckStamina()
+        barLayout = StaminaBar.GetComponent<HorizontalLayoutGroup>();
+		InstantiateStaminaPoints();
+    }
+
+    void InstantiateStaminaPoints()
+    {
+		for(int i = 0; i <= maxStamina; i++)
+		{
+			var go = Instantiate(StaminaPointPrefab);
+			go.transform.SetParent(barLayout.transform, false);
+		}
+    }
+
+    //create or deletes a bar depending of the number of existing bars and the number of stamina points that the player has.
+    /*public void CheckStamina()
     {
 		int currentStamina = barLayout.transform.childCount;
 
@@ -54,8 +62,8 @@ public class StaminaBarBehaviour : MonoBehaviour {
     }*/
 
 
-	// Update is called once per frame
-	/*void Update () {
+    // Update is called once per frame
+    /*void Update () {
 
 		//check every frame	the number of bars
 		CheckStamina();	

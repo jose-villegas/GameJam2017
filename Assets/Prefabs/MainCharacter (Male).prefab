@@ -984,6 +984,8 @@ GameObject:
   - 114: {fileID: 114000010916261478}
   - 114: {fileID: 114000012247492170}
   - 114: {fileID: 114000010593002444}
+  - 114: {fileID: 114000012545662418}
+  - 114: {fileID: 114000012484773974}
   m_Layer: 9
   m_Name: MainCharacter (Male)
   m_TagString: Player
@@ -2205,6 +2207,32 @@ MonoBehaviour:
   _itemLayer:
     serializedVersion: 2
     m_Bits: 131072
+--- !u!114 &114000012484773974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014121726106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21177a6c5c24844e963706a528cf46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+--- !u!114 &114000012545662418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014121726106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca2c630b692029498c6c7df60f9ce61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StaminaPointPrefab: {fileID: 1000013891722752, guid: ee752364381711b4f8f74220bf592719,
+    type: 2}
+  StaminaBar: {fileID: 0}
 --- !u!114 &114000012619765354
 MonoBehaviour:
   m_ObjectHideFlags: 1
