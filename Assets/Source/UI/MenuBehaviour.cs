@@ -34,10 +34,10 @@ public class MenuBehaviour : MonoBehaviour {
 		creditsMenu.gameObject.SetActive(false);
 		howToPlayMenu.gameObject.SetActive(false);
 		
-		/*startMenu.enabled = true;
+		startMenu.enabled = true;
 		creditsMenu.enabled = false;
 		howToPlayMenu.enabled = false;	
-		quitMenu.enabled = false;*/
+		quitMenu.enabled = false;
 
 	}
 
