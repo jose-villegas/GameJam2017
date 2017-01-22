@@ -5,6 +5,6 @@ using System.Collections;
 public class BeginGame : MonoBehaviour {
 	
 	public void StartLevel(){
-		SceneManager.LoadScene(1); 
+		SceneManager.LoadScene(0); 
 	}
 }

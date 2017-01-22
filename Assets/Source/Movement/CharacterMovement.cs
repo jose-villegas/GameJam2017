@@ -6,6 +6,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _gravity = 9.81f;
     [HeaderAttribute("Visual Effects")]
     [SerializeField] private ParticleSystem _doubleJumpFX;
+	[SerializeField] private AudioSource _jumpAudio;
     private PlayerInfo _playerInfo;
     private Vector3 _axisInput;
     private Vector3 _movement;
@@ -52,6 +53,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 _movement.y = _playerInfo.Character.JumpSpeed;
                 _playerInfo.Animator.SetTrigger("Jump");
+				_jumpAudio.Play ();
             }
 
             didDoubleJump = false;
@@ -63,8 +65,9 @@ public class CharacterMovement : MonoBehaviour
             // double jump
             if (_axisInput.y > 0 && _playerInfo.Animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Jumping Up") && !didDoubleJump)
             {
-                _movement.y += _playerInfo.Character.JumpSpeed;
+                _movement.y = _playerInfo.Character.JumpSpeed;
                 _playerInfo.Animator.SetTrigger("Double Jump");
+				_jumpAudio.Play ();
                 didDoubleJump = true;
 
                 if(_doubleJumpFX != null)
