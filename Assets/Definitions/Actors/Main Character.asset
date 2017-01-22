@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Main Character
   m_EditorClassIdentifier: 
   HealthPoints: 3
+  StaminaPoints: 5
   HorizontalSpeed: 3.5
   JumpSpeed: 8
   AirStrafeSpeed: 2
