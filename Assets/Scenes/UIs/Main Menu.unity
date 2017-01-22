@@ -248,11 +248,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 548608421}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 25, y: 1}
-  m_SizeDelta: {x: 400, y: 100}
+  m_SizeDelta: {x: 380.4, y: 107.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338783200
 MonoBehaviour:
@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &548608418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,8 +427,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 338783199}
   - {fileID: 1812251115}
+  - {fileID: 338783199}
   - {fileID: 600155917}
   - {fileID: 1637178320}
   m_Father: {fileID: 0}
@@ -449,7 +449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 853487742b7fb1e4681ab8893bee6b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startMenu: {fileID: 0}
   howToPlayMenu: {fileID: 857177514}
   creditsMenu: {fileID: 248675965}
   quitMenu: {fileID: 0}
@@ -524,7 +523,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 18, y: -163}
-  m_SizeDelta: {x: 700, y: 100}
+  m_SizeDelta: {x: 606.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600155918
 MonoBehaviour:
@@ -599,7 +598,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 548608422}
-        m_MethodName: StartLevel
+        m_MethodName: CreditsPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1242,7 +1241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 548608421}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 25, y: 165}
@@ -1451,7 +1450,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.88235295, g: 0.025951583, b: 0.025951583, a: 1}
+    m_HighlightedColor: {r: 0.9264706, g: 0.21799307, b: 0.5258142, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
