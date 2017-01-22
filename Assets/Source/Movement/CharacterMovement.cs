@@ -4,6 +4,8 @@
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float _gravity = 9.81f;
+    [HeaderAttribute("Visual Effects")]
+    [SerializeField] private ParticleSystem _doubleJumpFX;
     private PlayerInfo _playerInfo;
     private Vector3 _axisInput;
     private Vector3 _movement;
@@ -64,6 +66,11 @@ public class CharacterMovement : MonoBehaviour
                 _movement.y += _playerInfo.Character.JumpSpeed;
                 _playerInfo.Animator.SetTrigger("Double Jump");
                 didDoubleJump = true;
+
+                if(_doubleJumpFX != null)
+                {
+                    _doubleJumpFX.Play();
+                }
             }
         }
     }

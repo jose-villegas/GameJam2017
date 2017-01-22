@@ -7,6 +7,7 @@ public class EnemyHealthController : MonoBehaviour
 
     [SerializeField] private LayerMask _damageLayers;
     [SerializeField] private ParticleSystem _deathFX;
+    [HeaderAttribute("Visual Effects")]
     private EnemyPatrolInfo _enemyInfo;
 
     // Use this for initialization
@@ -29,7 +30,7 @@ public class EnemyHealthController : MonoBehaviour
             {
                 _deathFX.Play();
             }
-            
+
             CommonCoroutines.ScaleToZero(transform, .25f, true).Start();
         }
     }

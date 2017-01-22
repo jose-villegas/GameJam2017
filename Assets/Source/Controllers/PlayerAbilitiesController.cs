@@ -75,6 +75,8 @@ public class PlayerAbilitiesController : MonoBehaviour
 
     public void UseAttack()
     {
+        if(StaminaPoints > 0)
+
         StaminaPoints--;
         // trigger animation
         _playerInfo.Animator.SetTrigger("Attack");
