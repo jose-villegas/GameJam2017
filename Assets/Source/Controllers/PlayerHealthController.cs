@@ -8,6 +8,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     [TooltipAttribute("Layers from where the player would receive damage")]
     [SerializeField]
     private LayerMask _damageLayers;
+    [SerializeField] private LayerMask _fallLayer;
     [HeaderAttribute("Immunity")]
     [SerializeField]
     private int _immunityTime;
@@ -15,6 +16,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     private int _healthPoints;
     private bool _isImmune;
     private Image content;
+    private Transform _otherPlayer;
 
     public int HealthPoints
     {
@@ -47,6 +49,23 @@ public class PlayerHealthController : MonoBehaviour, IHittable
         {
             TemporalImmunity(other.gameObject).Start();
             Hit();
+            Knockback(0.5f).Start();
+        }
+
+        if ((_fallLayer.value & (1 << other.gameObject.layer)) > 0)
+        {
+            if(!_otherPlayer)
+            {
+                var _players = GameObject.FindGameObjectsWithTag("Player");
+
+                for (int i = 0; i < _players.Length; i++)
+                {
+                    if(_players[i].transform != transform) _otherPlayer = _players[i].transform;
+                }
+            }
+
+            Hit();
+            transform.position = _otherPlayer.position;
         }
     }
 
@@ -63,6 +82,15 @@ public class PlayerHealthController : MonoBehaviour, IHittable
         Physics.IgnoreCollision(eCollider, _playerInfo.Controller, false);
         // restore from immunity
         _isImmune = false;
+    }
+
+    private IEnumerator Knockback(float time)
+    {
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
+        {
+            _playerInfo.Controller.Move(-Vector3.right * t);
+            yield return null;
+        }
     }
 
     public void Hit()

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public static class CommonCoroutines
 {
@@ -16,6 +17,18 @@ public static class CommonCoroutines
         if (destroyAfter)
         {
             GameObject.Destroy(transform.gameObject, 0.5f);
+        }
+    }
+
+    public static IEnumerator ImageAlphaToValue(Image image, float time, float value)
+    {
+        float alpha = image.color.a;
+
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, value, t));
+            image.color = newColor;
+            yield return null;
         }
     }
 }

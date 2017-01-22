@@ -12,7 +12,7 @@ public class StaminaBarBehaviour : MonoBehaviour
     int maxStamina;
     public GameObject StaminaBar;
     private HorizontalLayoutGroup barLayout;
-	private GameObject[] _staminaPoints;
+	private Image[] _staminaPoints;
 
     // Use this for initialization
     void Start()
@@ -37,35 +37,38 @@ public class StaminaBarBehaviour : MonoBehaviour
 
     void InstantiateStaminaPoints()
     {
-		for(int i = 0; i <= maxStamina; i++)
+		_staminaPoints = new Image[maxStamina];
+
+		for(int i = 0; i < maxStamina; i++)
 		{
 			var go = Instantiate(StaminaPointPrefab);
 			go.transform.SetParent(barLayout.transform, false);
+			_staminaPoints[i] = go.GetComponent<Image>();
 		}
     }
 
-    //create or deletes a bar depending of the number of existing bars and the number of stamina points that the player has.
-    /*public void CheckStamina()
+    public void CheckStamina()
     {
-		int currentStamina = barLayout.transform.childCount;
+		int currentStamina = _playerStamina.StaminaPoints;
 
-		if (currentStamina > _playerStamina.StaminaPoints) 
+		for(int i = 0; i < _staminaPoints.Length; i++)
 		{
-			//delete a image bar.
-			//Destroy()
-		}
-		else if (currentStamina < _playerStamina.StaminaPoints)
-		{
-			//create a image bar.
-			Instantiate (StaminaPoint);
-		}
-    }*/
+			if(_staminaPoints[i].color.a < .5f && i < currentStamina)
+			{
+				CommonCoroutines.ImageAlphaToValue(_staminaPoints[i], .25f, 1.0f).Start();
+			}
 
+			if(_staminaPoints[i].color.a > .5f && i >= currentStamina)
+			{
+				CommonCoroutines.ImageAlphaToValue(_staminaPoints[i], .25f, 0.0f).Start();
+			}
+		}
+    }
 
     // Update is called once per frame
-    /*void Update () {
+    void Update () {
 
 		//check every frame	the number of bars
 		CheckStamina();	
-	}*/
+	}
 }

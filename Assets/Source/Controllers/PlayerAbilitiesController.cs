@@ -75,7 +75,7 @@ public class PlayerAbilitiesController : MonoBehaviour
 
     public void UseAttack()
     {
-        if(StaminaPoints > 0)
+        if(StaminaPoints <= 0) return;
 
         StaminaPoints--;
         // trigger animation

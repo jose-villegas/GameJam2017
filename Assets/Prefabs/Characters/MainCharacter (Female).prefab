@@ -2133,6 +2133,9 @@ MonoBehaviour:
   _damageLayers:
     serializedVersion: 2
     m_Bits: 49152
+  _fallLayer:
+    serializedVersion: 2
+    m_Bits: 262144
   _immunityTime: 5
 --- !u!114 &114000011502118698
 MonoBehaviour:
@@ -2401,12 +2404,12 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1000089358
+  randomSeed: 1156600486
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 5
+      scalar: 0.75
       maxCurve:
         serializedVersion: 2
         m_Curve:

@@ -30,6 +30,7 @@ public class EnemyPatrolMovement : MonoBehaviour
 		if(_enemyInfo.Agent.remainingDistance <= _minimumDistance)
 		{
 			GoToNextPoint();
+            _enemyInfo.Animator.SetBool("Walk", true);
 		}
     }
 
