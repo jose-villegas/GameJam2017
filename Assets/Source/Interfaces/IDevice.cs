@@ -2,7 +2,7 @@
 {
     float Forward { get; }
     bool Jump { get; }
-    bool Sprint { get; }
+    bool Switch { get; }
     bool Ability { get; }
 }
 

@@ -19,7 +19,6 @@ public class BulletController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 		GetComponent<Collider>().enabled = false;
-        CommonCoroutines.ScaleToZero(transform, .25f, true).Start();
     }
 
     /// <summary>

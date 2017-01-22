@@ -17,7 +17,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
     public int HealthPoints
     {
         get { return _healthPoints; }
-        set { _healthPoints = value; }
+        set { _healthPoints = Mathf.Min(value, _playerInfo.Character.HealthPoints); }
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class PlayerHealthController : MonoBehaviour, IHittable
             StandardMessages.DisablingBehaviour(this);
         }
 
-        _healthPoints = _playerInfo.Character.HealthPoints;
+        HealthPoints = _playerInfo.Character.HealthPoints;
     }
 
     /// <summary>
