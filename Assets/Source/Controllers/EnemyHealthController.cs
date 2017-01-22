@@ -21,7 +21,7 @@ public class EnemyHealthController : MonoBehaviour {
     {
         if ((_damageLayers.value & (1 << other.gameObject.layer)) > 0)
         {
-            Destroy(gameObject);
+            CommonCoroutines.ScaleToZero(transform, .25f, true).Start();
         }
 	}
 }

@@ -1,23 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class BulletController : MonoBehaviour
 {
-
-    public float BulletDuration;
     Rigidbody _rigidBody;
-
-    // Use this for initialization
-    void Start()
-    {
-        _rigidBody = gameObject.GetComponent<Rigidbody>();
-    }
 
     public void Fire(Vector3 direction, float speed, float duration)
     {
-        _rigidBody.velocity = direction * speed;
-        BulletDuration = duration;
-        Destroy(gameObject, BulletDuration);
+        gameObject.GetComponent<Rigidbody>().velocity = direction * speed;
+        Destroy(gameObject, duration);
+    }
 
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
+    {
+		GetComponent<Collider>().enabled = false;
+        CommonCoroutines.ScaleToZero(transform, .25f, true).Start();
+    }
+
+    /// <summary>
+    /// OnBecameInvisible is called when the renderer is no longer visible by any camera.
+    /// </summary>
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

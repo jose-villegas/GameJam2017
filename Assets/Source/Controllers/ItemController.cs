@@ -36,9 +36,6 @@ public class ItemController : MonoBehaviour
 
         maxHealth = _playerInfo.Character.HealthPoints;
         maxStamina = _playerInfo.Character.StaminaPoints;
-
-
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -46,12 +43,9 @@ public class ItemController : MonoBehaviour
 
         if ((_itemLayer.value & (1 << other.gameObject.layer)) > 0)
         {
-			
             //validates the name of the object that collided  with the player
             if (other.tag == "HealthPack")
             {
-
-
                 _playerHealth.HealthPoints++;
 
                 if (_playerHealth.HealthPoints > maxHealth)
@@ -62,7 +56,6 @@ public class ItemController : MonoBehaviour
             }
             else
             {
-
                 _playerStamina.StaminaPoints++;
 
                 if (_playerStamina.StaminaPoints > maxStamina)

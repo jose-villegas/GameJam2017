@@ -361,7 +361,7 @@ MonoBehaviour:
   ActiveControlType: 0
   KeyboardConfiguration: {fileID: 11400000, guid: 1f9c00c6b1fd02a4880c126a5e5d2b6b,
     type: 2}
-  GamepadConfiguration: {fileID: 11400000, guid: a2995df4aa0205e45bd96be5c4e36813,
+  GamepadConfiguration: {fileID: 11400000, guid: ed2464a2b04f1a640935cc664647d63b,
     type: 2}
 --- !u!114 &114000013742529404
 MonoBehaviour:
@@ -390,9 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b7d9adfb23cb9488a3ee68efa4d94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player1Prefab: {fileID: 114000011676041538, guid: 5eb09395d9b8733459912b8094fdf1fc,
+  _player1Prefab: {fileID: 114000012619765354, guid: 02a3ac5c5bb2c434a93899275bf46cb4,
     type: 2}
-  _player2Prefab: {fileID: 114000011676041538, guid: 5eb09395d9b8733459912b8094fdf1fc,
+  _player2Prefab: {fileID: 114000011876145376, guid: d36397bd33673bf4db4d032860104edd,
     type: 2}
   _playersParent: {fileID: 4000011445787556}
   _player1Input: {fileID: 114000013742529404}

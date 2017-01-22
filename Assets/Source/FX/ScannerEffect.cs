@@ -37,25 +37,6 @@ public class ScannerEffect : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            _scanning = true;
-            _scanDistance = 0;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                _scanning = true;
-                _scanDistance = 0;
-                _scannerOrigin.position = hit.point;
-            }
-        }
     }
 
 	public void InitiateScan(Transform origin)

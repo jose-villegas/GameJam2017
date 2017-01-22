@@ -1013,6 +1013,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013990690466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011317376366}
+  m_Layer: 0
+  m_Name: BulletOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000014176167098
 GameObject:
   m_ObjectHideFlags: 1
@@ -1368,6 +1383,19 @@ Transform:
   - {fileID: 4000010479663770}
   m_Father: {fileID: 4000012326910352}
   m_RootOrder: 0
+--- !u!4 &4000011317376366
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013990690466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.3, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000013774247918}
+  m_RootOrder: 3
 --- !u!4 &4000011370811866
 Transform:
   m_ObjectHideFlags: 1
@@ -1954,6 +1982,7 @@ Transform:
   - {fileID: 4000011786616530}
   - {fileID: 4000014253686010}
   - {fileID: 4000014126252246}
+  - {fileID: 4000011317376366}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013897289574
@@ -2125,6 +2154,9 @@ MonoBehaviour:
   _scannerHoldTime: 0.75
   _attackLockTime: 1
   _currentMode: 1
+  _bulletPrefab: {fileID: 114000010563723934, guid: 6dc7e3ddd5865ec45a1a582982d2a229,
+    type: 2}
+  _bulletOrigin: {fileID: 4000011317376366}
 --- !u!114 &114000011676041538
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -19,7 +19,7 @@ public class PlayerPresenter : MonoBehaviour
     /// Start is called on the frame when a script is enabled just before
     /// any of the Update methods is called the first time.
     /// </summary>
-    void Start()
+    void Awake()
     {
         CreatePlayers();
     }
@@ -35,7 +35,7 @@ public class PlayerPresenter : MonoBehaviour
             // assign input Configurations
             Players[i].InputConfiguration = i == 0 ? _player1Input : _player2Input;
             Players[i].transform.SetParent(_playersParent, false);
-            Players[i].transform.Translate(Vector3.forward * i);
+            Players[i].transform.Translate(Vector3.right * i);
             Players[i].name = "Player " + (i + 1);
         }
     }
