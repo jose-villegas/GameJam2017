@@ -4,9 +4,9 @@ using System.Collections;
 public class EnemyPatrolInfo : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private UnityEngine.AI.NavMeshAgent _agent;
 
-    public NavMeshAgent Agent
+    public UnityEngine.AI.NavMeshAgent Agent
     {
         get
         {
@@ -37,7 +37,7 @@ public class EnemyPatrolInfo : MonoBehaviour
     {
         if (!this.FindComponent(ref _agent))
         {
-            StandardMessages.MissingComponent<NavMeshAgent>(this);
+            StandardMessages.MissingComponent<UnityEngine.AI.NavMeshAgent>(this);
             StandardMessages.DisablingBehaviour(this);
         }
 

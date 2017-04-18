@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(EnemyPatrolInfo))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent), typeof(EnemyPatrolInfo))]
 public class EnemyPatrolMovement : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;

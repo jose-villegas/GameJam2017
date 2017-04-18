@@ -33,7 +33,5 @@ public class Scannable : MonoBehaviour
                 _isVisible = false;
             }, 1.0f).Start();
         }
-
-        Debug.Log("Scannable Hit");
     }
 }
